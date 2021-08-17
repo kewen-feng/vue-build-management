@@ -10,7 +10,9 @@ const routes = [
     component: () => import('@/views/login/login')
   },
   {
-    path: '/'
+    path: '/',
+    name: 'Layout',
+    component: () => import('@/components/Layout/index')
   }
 ]
 

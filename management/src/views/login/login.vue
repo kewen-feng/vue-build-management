@@ -1,13 +1,18 @@
 <template>
-  <div>
-    <el-form>
-      <el-form-item label="用户名">
-        <el-input v-model="form.name"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-input placeholder="请输入密码" v-model="form.password" show-password></el-input>
-      </el-form-item>
-    </el-form>
+  <div class="login">
+    <el-card class="login-card" shadow="always">
+      <el-form class="login-form" label-width="40px">
+        <el-form-item label="用户">
+          <el-input placeholder="请输入用户" v-model="form.name"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input placeholder="请输入密码" size="large" v-model="form.password" show-password></el-input>
+        </el-form-item>
+        <el-form-item label-width="0">
+          <el-button type="primary" @click="onSubmit">登录</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
   </div>
 </template>
 
@@ -25,6 +30,19 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .login {
+    height: 100%;
+    background: #abcdef;
+    .login-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: auto;
+      .login-form {
+        margin-top: 22px;
+      }
+    }
+  }
 </style>
