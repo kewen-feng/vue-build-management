@@ -9,7 +9,7 @@
           <el-input placeholder="请输入密码" size="large" v-model="form.password" show-password></el-input>
         </el-form-item>
         <el-form-item label-width="0">
-          <el-button type="primary" @click="onSubmit">登录</el-button>
+          <el-button type="primary" @click="login">登录</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -25,6 +25,17 @@ export default {
         name: '',
         password: ''
       }
+    }
+  },
+  methods: {
+    login() {
+      this.$ajax({
+        url: '/login',
+        method: 'POST',
+        data: this.form
+      }).then(res => {
+        console.log('res', res)
+      })
     }
   }
 }
