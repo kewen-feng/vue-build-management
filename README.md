@@ -5,7 +5,7 @@
 ## 进度
 
 - [x] sass 样式预处理 -- complete
-- [] axios
+- [ ] axios
   - [x] interceptors 拦截器 -- comnplete
   - [ ] request 二次封装 -- condouct
 - [ ] router 路由 -- conduct
