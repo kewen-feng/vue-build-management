@@ -4,12 +4,12 @@
 
 ## 进度
 
-- [x] sass 样式预处理 -- complete
+- [x] sass 样式预处理
 - [ ] axios
-  - [x] interceptors 拦截器 -- comnplete
+  - [x] interceptors 拦截器
   - [ ] request 二次封装 -- condouct
 - [ ] router 路由 -- conduct
 - [ ] vuex 状态管理  -- future
-- [x] layout 公共页面载体 -- complete
+- [x] layout 公共页面载体
 - [ ] login 登录功能 -- condouct
 - [ ] member 成员管理 -- future
