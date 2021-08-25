@@ -9,13 +9,13 @@ import service from './interceptor';
 const request = (ajaxParams) => {
   let url = ajaxParams.url;
   let method = ajaxParams.method;
-  let data = ajaxParams.data;
+  let data = ajaxParams.data || {};
   return service({
     url,
     method,
-    ...data
+    data
   }).then(res => {
-    if (res.data.code == 10000) return (res.data);
+    if (res.data.code == 10000) return res.data.data;
     else return;
   }).catch(error => {
     console.log('service', error)

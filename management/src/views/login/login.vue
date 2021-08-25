@@ -32,9 +32,16 @@ export default {
       this.$ajax({
         url: '/login',
         method: 'POST',
-        data: this.form
+        data: {
+          username: this.form.name,
+          password: this.form.password
+        }
       }).then(res => {
-        console.log('res', res)
+        if (res.token) this.$message({
+          message: res.msg,
+          type: 'success'
+        });
+        else this.$message(res.msg);
       })
     }
   }
