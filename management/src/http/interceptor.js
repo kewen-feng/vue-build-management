@@ -21,7 +21,10 @@ service.interceptors.request.use(config => {
 
 // 响应拦截
 service.interceptors.response.use(response => {
-  if (response.data.code === 10000) return response;
+  if (response.data.code === "10000") return response;
+  else if (response.data.code === "403") {
+    return Promise.reject(response);
+  }
 }, error => {
   return Promise.reject(error);
 });

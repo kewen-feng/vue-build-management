@@ -1,14 +1,20 @@
 <template>
-  <div></div>
+  <div>
+    <el-table :data="list" border>
+      <el-table-column prop="name"></el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'MemberList',
   data() {
-    return {}
+    return {
+      list: []
+    }
   },
-  create() {
+  created() {
     this.getMemberList();
   },
   methods: {
@@ -17,7 +23,7 @@ export default {
         url: '/member/list',
         method: 'GET'
       }).then(res => {
-        console.log(res)
+        this.list = res.list || [];
       })
     }
   }
