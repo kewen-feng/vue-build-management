@@ -1,11 +1,11 @@
 <template>
   <el-container>
-    <el-container>
-      <el-aside width="200px">
-        <NavBar></NavBar>
-      </el-aside>
-      <el-main></el-main>
-    </el-container>
+    <el-aside width="200px">
+      <NavBar></NavBar>
+    </el-aside>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
   </el-container>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     NavBar
   },
   data() {
-
+    return {}
   }
 }
 </script>
