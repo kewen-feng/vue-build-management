@@ -6,7 +6,7 @@
 export default {
   name: 'MemberList',
   data() {
-    return
+    return {}
   },
   create() {
     this.getMemberList();
@@ -17,7 +17,7 @@ export default {
         url: '/member/list',
         method: 'GET'
       }).then(res => {
-
+        console.log(res)
       })
     }
   }
