@@ -37,11 +37,17 @@ export default {
           password: this.form.password
         }
       }).then(res => {
-        if (res.token) this.$message({
-          message: res.msg,
-          type: 'success'
-        });
-        else this.$message(res.msg);
+        if (res.token) {
+          sessionStorage.setItem('token', JSON.stringify(res.token));
+          this.$message({
+            message: res.msg,
+            type: 'success',
+            onClose: () => {
+              let redirect = this.$route.query.redirect || '/member-list';
+              this.$router.replace(redirect);
+            }
+          });
+        } else this.$message(res.msg);
       })
     }
   }
