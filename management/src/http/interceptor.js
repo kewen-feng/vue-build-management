@@ -14,6 +14,8 @@ const service = axios.create({
 
 // 请求拦截
 service.interceptors.request.use(config => {
+  const token = sessionStorage.getItem('token');
+  if (token) config.headers.token = token;
   return config;
 }, error => {
   return Promise.reject(error);
