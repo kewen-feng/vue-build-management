@@ -23,8 +23,11 @@ export default {
         url: '/member/list',
         method: 'GET'
       }).then(res => {
+        console.log(res)
         this.list = res.list || [];
-      })
+      }).catch(error => {
+        console.log('memberList', error);
+      });
     }
   }
 }

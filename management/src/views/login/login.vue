@@ -38,7 +38,7 @@ export default {
         }
       }).then(res => {
         if (res.token) {
-          sessionStorage.setItem('token', JSON.stringify(res.token));
+          // sessionStorage.setItem('token', JSON.stringify(res.token));
           this.$message({
             message: res.msg,
             type: 'success',
