@@ -26,6 +26,11 @@ const routes = [
       name: '/memeberDetail',
       component: () => import('@/views/member/memberDetail')
 
+    }, {
+      path: '/member-add',
+      name: '/memeberDetail',
+      component: () => import('@/views/member/memberDetail')
+
     }]
   }
 ]
