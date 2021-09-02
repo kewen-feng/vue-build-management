@@ -1,23 +1,24 @@
 /** 全局请求封装 */
 
 import axios from 'axios';
-// import router from '@/router';
+import router from '@/router';
 
 // 实例化 axios
 const service = axios.create({
   // 域名地址或者服务器的ip地址
-  baseURL: 'https://www.fastmock.site/mock/a1b1e6abbb15c67c1e083712b3e874ec/manage/',
+  baseURL: 'http://localhost:3000',
   // 请求超时时间
   timeout: 3000,
   // 默认请求头
-  header: {'Content-Type': 'application/json'}
+  headers: {'Content-Type': 'application/json'}
 })
-
-const CancelToken = axios.CancelToken;
-const source = CancelToken.source();
 
 // 请求拦截
 service.interceptors.request.use(config => {
+  if (sessionStorage.getItem('token')) {
+    let token = sessionStorage.getItem('token');
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 }, error => {
   return Promise.reject(error);
@@ -25,12 +26,37 @@ service.interceptors.request.use(config => {
 
 // 响应拦截
 service.interceptors.response.use(response => {
-  if (response.data.code === '10000') return response.data;
-  else if (response.data.code === '403') {
-    source.cancel('Operation canceled by the user.');
-    // return Promise.resolve(router.replace(`/login?redirect=${encodeURIComponent(router.currentRoute.fullPath)}`));
-  }
+  if (response.data.code === 10000) return response.data;
 }, error => {
+  if (!error) return Promise.reject(error);
+  if (error.response) {
+    switch (error.response.status) {
+      case 200:
+        error.message = '错误响应也会有状态码为200的情况'
+        break
+      case 400:
+        error.message = '请求错误(400)'
+        break
+      case 403:
+        error.message = '没有登录或登录已失效(403)'
+        router.replace(`/login?redirect=${encodeURIComponent(router.currentRoute.fullPath)}`)
+        break
+      case 404:
+        error.message = '请求出错(404)'
+        break
+      case 405:
+        error.message = '请求方法错误(405)'
+        break
+      case 500:
+        error.message = '服务器错误(500)'
+        break
+      case 504:
+        error.message = '网络超时(504)'
+        break
+      default:
+        error.message = `连接出错，状态码：(${error.response.status})!`
+    }
+  }
   return Promise.reject(error);
 });
 
