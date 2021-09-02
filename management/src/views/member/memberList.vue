@@ -1,6 +1,13 @@
 <template>
   <div>
     <el-table :data="list" border>
+      <el-table-column label="操作" align="center" width="60">
+        <template slot-scope="scope">
+          <router-link :to="{ path: 'member-edit', query: {id: scope.row.id}}" title="编辑">
+            <i class="el-icon-edit-outline"></i>
+          </router-link>
+        </template>
+      </el-table-column>
       <el-table-column label="id" align="center" prop="id"></el-table-column>
       <el-table-column label="用户名" align="center" prop="username"></el-table-column>
     </el-table>
@@ -9,7 +16,7 @@
 
 <script>
 export default {
-  name: 'MemberList',
+  name: 'memberList',
   data() {
     return {
       list: []
@@ -19,17 +26,15 @@ export default {
     this.getMemberList();
   },
   methods: {
+    // 获取列表
     getMemberList() {
       this.$ajax({
         url: '/user/list',
         method: 'POST'
       }).then(res => {
-        console.log(res)
         this.list = res.data || [];
-      }).catch(error => {
-        console.log('memberList', error);
       });
-    }
+    },
   }
 }
 </script>

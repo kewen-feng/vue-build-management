@@ -12,7 +12,7 @@
 <script>
 import NavBar from './components/NavBar';
 export default {
-  name: 'Layout',
+  name: 'layout',
   components: {
     NavBar
   },
