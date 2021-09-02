@@ -22,6 +22,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .el-container {
+    height: 100%;
+    .el-aside {
+      height: 100%;
+      .el-menu {
+        height: 100%;
+      }
+    }
+  }
 
 </style>
