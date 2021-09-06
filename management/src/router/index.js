@@ -22,13 +22,13 @@ const routes = [
       name: 'memberList',
       component: () => import('@/views/member/memberList')
     }, {
-      path: '/member-edit',
-      name: '/memeberDetail',
+      path: '/member-add',
+      name: '/memeberDetailAdd',
       component: () => import('@/views/member/memberDetail')
 
     }, {
-      path: '/member-add',
-      name: '/memeberDetail',
+      path: '/member-edit',
+      name: '/memeberDetailEdit',
       component: () => import('@/views/member/memberDetail')
 
     }]
