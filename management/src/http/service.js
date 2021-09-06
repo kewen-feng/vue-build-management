@@ -9,7 +9,7 @@ const service = axios.create({
   // 域名地址或者服务器的ip地址
   baseURL: 'http://localhost:3000',
   // 请求超时时间
-  timeout: 5000,
+  timeout: 3000,
   // 默认请求头
   headers: {'Content-Type': 'application/json'}
 })
@@ -29,16 +29,17 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(response => {
   if (response.data.code === 10000) return response.data;
 }, error => {
+    console.dir(error)
+    console.log(error.config.timeout)
     // console.log(error.code === 'ECONNABORTED')
-  console.log('2')
   if (!error) return Promise.reject(error);
   if (!error.response) {
     switch (error.message) {
       case 'Network Error':
         error.message = '链接服务器错误!';
         break;
-      case 'timeout of 3000ms exceeded':
-        error.message = '响应超时!';
+      case `timeout of ${error.config.timeout}ms exceeded`:
+        error.message = `持续${error.config.timeout / 1000}s无响应!`;
         break;
     }
     element.Message.error(error.message);
