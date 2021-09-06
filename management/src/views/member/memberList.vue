@@ -3,7 +3,7 @@
     <router-link to="/member-add" title="新增">
       <el-button type="primary" round size="mini">新增</el-button>
     </router-link>
-    <el-table :data="list" border>
+    <el-table class="mt10" :data="list" border>
       <el-table-column label="操作" align="center" width="60">
         <template slot-scope="scope">
           <router-link :to="{ path: 'member-edit', query: {id: scope.row.id}}" title="编辑">
