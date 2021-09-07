@@ -30,7 +30,6 @@ service.interceptors.response.use(response => {
   if (response.data.code === 10000) return response.data;
 }, error => {
     console.dir(error)
-    console.log(error.config.timeout)
     // console.log(error.code === 'ECONNABORTED')
   if (!error) return Promise.reject(error);
   if (!error.response) {
@@ -54,7 +53,7 @@ service.interceptors.response.use(response => {
         error.message = '请求错误(400)'
         break
       case 403:
-        error.message = '没有登录或登录已失效(403)'
+        error.message = '请登录'
         router.replace(`/login?redirect=${encodeURIComponent(router.currentRoute.fullPath)}`)
         break
       case 404:
@@ -73,6 +72,7 @@ service.interceptors.response.use(response => {
         error.message = `连接出错，状态码：(${error.response.status})!`
     }
   }
+  element.Message.error(error.message);
   return Promise.reject(error);
 });
 
