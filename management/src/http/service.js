@@ -29,7 +29,7 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(response => {
   if (response.data.code === 10000) return response.data;
 }, error => {
-    console.dir(error)
+    // console.dir(error)
     // console.log(error.code === 'ECONNABORTED')
   if (!error) return Promise.reject(error);
   if (!error.response) {
@@ -50,7 +50,7 @@ service.interceptors.response.use(response => {
         error.message = '错误响应也会有状态码为200的情况'
         break
       case 400:
-        error.message = '请求错误(400)'
+        error.message = error.response.data.data.msg || '请求错误(400)'
         break
       case 403:
         error.message = '请登录'
