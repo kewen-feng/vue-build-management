@@ -37,7 +37,7 @@ export default {
     return {
       id: this.$route.query.id || '',
       form: {
-        username: '',
+        username: this.$route.query.username || '',
         password: '',
         checkPassword: ''
       },

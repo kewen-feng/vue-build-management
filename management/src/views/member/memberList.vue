@@ -6,7 +6,7 @@
     <el-table class="mt10" :data="list" border>
       <el-table-column label="操作" align="center" width="60">
         <template slot-scope="scope">
-          <router-link :to="{ path: 'member-edit', query: {id: scope.row.id}}" title="编辑">
+          <router-link :to="{ path: 'member-edit', query: {id: scope.row.id, username: scope.row.username}}" title="编辑">
             <i class="el-icon-edit-outline"></i>
           </router-link>
         </template>
