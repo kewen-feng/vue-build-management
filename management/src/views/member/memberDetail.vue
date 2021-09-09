@@ -10,10 +10,10 @@
           <el-input placeholder="请输入用户" v-model="form.username"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input placeholder="请输入密码" size="large" v-model="form.password"></el-input>
+          <el-input type="password" placeholder="请输入密码" size="large" v-model="form.password"></el-input>
         </el-form-item>
         <el-form-item label="确认密码" prop="checkPassword">
-          <el-input placeholder="请输入确认密码" size="large" v-model="form.checkPassword"></el-input>
+          <el-input type="password" placeholder="请输入确认密码" size="large" v-model="form.checkPassword"></el-input>
         </el-form-item>
       </el-form>
     </el-card>

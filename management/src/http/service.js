@@ -28,6 +28,10 @@ service.interceptors.request.use(config => {
 // 响应拦截
 service.interceptors.response.use(response => {
   if (response.data.code === 10000) return response.data;
+  else {
+    element.Message.error(response.data.message);
+    return Promise.reject(response.data);
+  }
 }, error => {
     // console.dir(error)
     // console.log(error.code === 'ECONNABORTED')
