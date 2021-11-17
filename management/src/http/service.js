@@ -40,9 +40,11 @@ service.interceptors.response.use(response => {
     switch (error.message) {
       case 'Network Error':
         error.message = '链接服务器错误!';
+        router.replace(`/login?redirect=${encodeURIComponent(router.currentRoute.fullPath)}`)
         break;
       case `timeout of ${error.config.timeout}ms exceeded`:
         error.message = `持续${error.config.timeout / 1000}s无响应!`;
+        router.replace(`/login?redirect=${encodeURIComponent(router.currentRoute.fullPath)}`)
         break;
     }
     element.Message.error(error.message);
